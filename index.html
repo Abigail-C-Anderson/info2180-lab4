@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abigail Anderson Lab 4 620144241</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
 </head>
 <body>
-    <h1>Avengers Character Search</h1>
-    <button id="searchButton">Search</button>
-    <div id="superheroesList"></div>
-
-    <script src="app.js"></script>
+    <header>
+        <h1>Avengers Character Search</h1>
+    </header>
+    <div class="header">
+        <p id="searchSent">Search by Full name or Alias</p>
+        <form>
+            <input type="text" id="enterText" placeholder="e.g. Captain America or Hulk">
+            <button type="submit" id="searchy">Search</button>
+        </form>
+        <div id="result"></div>
+    </div>
 </body>
 </html>

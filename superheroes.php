@@ -1,7 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-
 $superheroes = [
   [
       "id" => 1,
@@ -65,10 +64,22 @@ $superheroes = [
   ], 
 ];
 
-?>
+$query = htmlspecialchars(filter_input(INPUT_GET, "query"), ENT_QUOTES, 'UTF-8');
+$notFound = "SUPERHERO NOT FOUND";
+$check = false;
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+foreach ($superheroes as $superhero) {
+    if (strcasecmp($superhero['alias'], $query) === 0 || strcasecmp($superhero['name'], $query) === 0) {
+        $check = true;
+        echo "<h3>" . htmlspecialchars($superhero['alias'], ENT_QUOTES, 'UTF-8') . "</h3>";
+        echo "<h4>" . htmlspecialchars($superhero['name'], ENT_QUOTES, 'UTF-8') . "</h4>";
+        echo "<p>" . htmlspecialchars($superhero['biography'], ENT_QUOTES, 'UTF-8') . "</p>";
+    } elseif (strlen($query) === 0) {
+        echo "<ul><li>" . htmlspecialchars($superhero['alias'], ENT_QUOTES, 'UTF-8') . "</li></ul>";
+        $check = true;
+    }
+}
+
+if ($check == false) {
+    echo "<p>" . htmlspecialchars($notFound, ENT_QUOTES, 'UTF-8') . "</p>";
+}
